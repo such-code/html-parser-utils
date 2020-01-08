@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Simple Test Page</title>
+    <meta name="description" content="Simple Test Page">
+    <meta name="author" content="Unknown">
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <script type="text/javascript">
+        console.warn('Hello light!');
+    </script>
+</head>
+
+<body>
+    <h1>Page title</h1>
+    <p>This is sample paragraph.</p>
+
+    Some text without tags :)
+
+    <!-- Known issue: <![CDATA[]]> is parsed like comment by htmlparser2 library. -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
