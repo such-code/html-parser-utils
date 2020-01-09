@@ -1,4 +1,10 @@
-import { Node } from 'domhandler';
 import { ParserOptions } from 'htmlparser2/lib';
+import { DataNode, Element, Node, NodeWithChildren } from 'domhandler/lib';
+import { ProcessingInstruction } from 'domhandler/lib/node';
 export declare function stringToRegExp($string: string): RegExp;
+export declare function isNode($value: any): $value is Node;
+export declare function isDataNode($value: any): $value is DataNode;
+export declare function isProcessingInstruction($value: any): $value is ProcessingInstruction;
+export declare function isNodeWithChildren($value: any): $value is NodeWithChildren;
+export declare function isElement($value: any): $value is Element;
 export declare function stringToDom($data: string, $options?: ParserOptions): Promise<Array<Node>>;
