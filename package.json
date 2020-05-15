@@ -1,20 +1,30 @@
 {
-  "name": "html-parser-utils",
-  "version": "1.0.0",
+  "name": "@such-code/html-parser-utils",
+  "version": "1.0.1",
   "description": "Utils to help parsed DOM rendering and more.",
   "main": "dist/lib/index.js",
   "scripts": {
-    "build": "tsc; ncp ./src/test/assets ./dist/test/assets;",
-    "test": "npm run build; node dist/test/index.js"
+    "cleanup": "del ./dist",
+    "build": "npm run cleanup; tsc; ncp ./src/test/assets ./dist/test/assets;",
+    "test": "npm run build; node dist/test/index.js;"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Eriks Podrezs<erya14@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/such-code/html-parser-utils.git"
+  },
+  "types": "dist/lib/index.d.ts",
+  "files": [
+    "dist/lib/**/*"
+  ],
+  "license": "MIT",
   "dependencies": {
     "domhandler": "^3.0.0",
-    "htmlparser2": "^4.0.0"
+    "htmlparser2": "^4.1.0"
   },
   "devDependencies": {
-    "@types/node": "^13.1.4",
+    "@types/node": "^12.12.39",
+    "del-cli": "^3.0.0",
     "ncp": "^2.0.0",
     "typescript": "^3.7.4"
   }

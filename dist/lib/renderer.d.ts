@@ -1,46 +1,56 @@
 import { DataNode, Element, Node, NodeWithChildren } from 'domhandler/lib';
 export declare type DomRendererOptions = {};
 /**
- * Helps render HTML AST.
+ * Helps rendering HTML AST.
  */
 export declare class DomRenderer {
     protected readonly options: DomRendererOptions;
     /**
      * Wraps the attribute in single or double quotes.
+     * @param $value
+     * @static
      */
     static quote($value: string): string;
     constructor(options?: DomRendererOptions);
     protected renderTag($element: Element): string;
     /**
-     * Create starting tag for element, if required an additional white space will
-     * be added to retain flow of inline elements.
+     * Create starting tag for element, if required an additional white space will be added to retain flow of inline
+     * elements.
+     * @param $element
      */
     protected openTag($element: Element): string;
     /**
-     * Loop set of attributes belonging to an element. Surrounds attributes with
-     * quotes if required, omits if not.
+     * Loops through set of attributes belonging to an element. Surrounds attributes with quotes if required, omits if
+     * not.
+     * @param $element
      */
     protected attributes($element: Element): string;
     protected closeTag($element: Element): string;
     protected renderCDATA($element: NodeWithChildren): string;
     /**
-     * Return simple text, no special treatment.
+     * Render simple text, no special treatment.
+     * @param $element
      */
     protected renderText($element: DataNode): string;
     /**
-     * Returned simple comment.
+     * Render simple comment.
+     * @param $element
      */
     protected renderComment($element: DataNode): string;
     /**
-     * Return parsed directive.
+     * Render parsed directive.
+     * @param $element
      */
     protected renderDirective($element: DataNode): string;
     /**
      * Completely render one element including children.
+     * @param $node
      */
     renderNode($node: Node): string;
     /**
-     * Renders array of elements
+     * Renders array of elements.
+     * @param $elements
      */
     renderNodes($elements: Array<Node>): string;
 }
+//# sourceMappingURL=renderer.d.ts.map

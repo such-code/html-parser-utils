@@ -1,10 +1,5 @@
-export declare const List: {
+export declare const HtmlNode: {
     all: Set<string>;
-    inline: Set<string>;
-    singular: Set<string>;
-    redundant: Set<string>;
-    node: Set<string>;
-    structural: Set<string>;
     attributes: {
         hidden: string;
         high: string;
@@ -121,4 +116,10 @@ export declare const List: {
         novalidate: Set<string>;
         sortable: Set<string>;
     };
+    inline: Set<string>;
+    node: Set<string>;
+    redundant: Set<string>;
+    singular: Set<string>;
+    structural: Set<string>;
 };
+//# sourceMappingURL=html-node.d.ts.map

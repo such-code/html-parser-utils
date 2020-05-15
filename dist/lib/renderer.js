@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const list_1 = require("./list");
+exports.DomRenderer = void 0;
+const html_node_1 = require("./html-node");
 const lib_1 = require("htmlparser2/lib");
 /**
- * Helps render HTML AST.
+ * Helps rendering HTML AST.
  */
 class DomRenderer {
     constructor(options = {}) {
@@ -11,6 +12,8 @@ class DomRenderer {
     }
     /**
      * Wraps the attribute in single or double quotes.
+     * @param $value
+     * @static
      */
     static quote($value) {
         if (!$value) {
@@ -22,7 +25,7 @@ class DomRenderer {
     ;
     renderTag($element) {
         let render = this.openTag($element);
-        if (list_1.List.node.has($element.type) && !list_1.List.singular.has($element.name)) {
+        if (html_node_1.HtmlNode.node.has($element.type) && !html_node_1.HtmlNode.singular.has($element.name)) {
             if (Array.isArray($element.children)) {
                 render += this.renderNodes($element.children);
             }
@@ -31,8 +34,9 @@ class DomRenderer {
         return render;
     }
     /**
-     * Create starting tag for element, if required an additional white space will
-     * be added to retain flow of inline elements.
+     * Create starting tag for element, if required an additional white space will be added to retain flow of inline
+     * elements.
+     * @param $element
      */
     openTag($element) {
         const attributes = this.attributes($element);
@@ -42,8 +46,9 @@ class DomRenderer {
     }
     ;
     /**
-     * Loop set of attributes belonging to an element. Surrounds attributes with
-     * quotes if required, omits if not.
+     * Loops through set of attributes belonging to an element. Surrounds attributes with quotes if required, omits if
+     * not.
+     * @param $element
      */
     attributes($element) {
         if (typeof $element.attribs === 'object' && $element.attribs !== null) {
@@ -61,21 +66,24 @@ class DomRenderer {
         return `<![CDATA[${this.renderNodes($element.children)}]]>`;
     }
     /**
-     * Return simple text, no special treatment.
+     * Render simple text, no special treatment.
+     * @param $element
      */
     renderText($element) {
         return $element.data;
     }
     ;
     /**
-     * Returned simple comment.
+     * Render simple comment.
+     * @param $element
      */
     renderComment($element) {
         return `<!--${$element.data}-->`;
     }
     ;
     /**
-     * Return parsed directive.
+     * Render parsed directive.
+     * @param $element
      */
     renderDirective($element) {
         return `<${$element.data}>`;
@@ -83,6 +91,7 @@ class DomRenderer {
     ;
     /**
      * Completely render one element including children.
+     * @param $node
      */
     renderNode($node) {
         switch ($node.type) {
@@ -104,7 +113,8 @@ class DomRenderer {
         return undefined;
     }
     /**
-     * Renders array of elements
+     * Renders array of elements.
+     * @param $elements
      */
     renderNodes($elements) {
         return $elements
@@ -113,4 +123,3 @@ class DomRenderer {
     }
 }
 exports.DomRenderer = DomRenderer;
-//# sourceMappingURL=renderer.js.map

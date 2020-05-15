@@ -1,4 +1,7 @@
-export const List = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HtmlNode = void 0;
+exports.HtmlNode = {
     all: new Set([
         'a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body',
         'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del',
@@ -10,27 +13,6 @@ export const List = {
         'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot',
         'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr',
     ]),
-    // List of inline elements, br is left out deliberately so it is treated as block
-    // level element. Spaces around br elements are redundant.
-    inline: new Set([
-        'a', 'abbr', 'b', 'bdo', 'button', 'cite', 'code', 'dfn', 'em', 'i', 'img', 'input', 'kbd',
-        'label', 'q', 's', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'textarea', 'var'
-    ]),
-    // List of singular elements, e.g. elements that have no closing tag.
-    singular: new Set([
-        'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'wbr'
-    ]),
-    // List of redundant attributes, e.g. boolean attributes that require no value.
-    redundant: new Set([
-        'autofocus', 'disabled', 'multiple', 'required', 'readonly', 'hidden', 'async', 'defer', 'formnovalidate',
-        'checked', 'scoped', 'reversed', 'selected', 'autoplay', 'controls', 'loop', 'muted', 'seamless', 'default',
-        'ismap', 'novalidate', 'open', 'typemustmatch', 'truespeed', 'itemscope', 'autocomplete', 'download',
-        'draggable', 'novalidate', 'sortable', 'spellcheck'
-    ]),
-    // Elements that have special content, e.g. JS or CSS.
-    node: new Set(['tag', 'script', 'style']),
-    // Elements that require and should keep structure to their content.
-    structural: new Set([ 'pre', 'textarea', 'code' ]),
     // Attribute table, global attributes like `hidden` and `id` are not
     // included as these attributes require no additional checks.
     attributes: {
@@ -100,7 +82,7 @@ export const List = {
         target: new Set(['a', 'area', 'base', 'form']),
         title: '*',
         type: new Set(['button', 'input', 'command', 'embed', 'object', 'script', 'source', 'style', 'menu']),
-        usemap: new Set(['img',  'input', 'object']),
+        usemap: new Set(['img', 'input', 'object']),
         value: new Set(['button', 'option', 'input', 'li', 'meter', 'progress', 'param']),
         width: new Set(['canvas', 'embed', 'iframe', 'img', 'input', 'object', 'video']),
         wrap: 'textarea',
@@ -145,7 +127,7 @@ export const List = {
         accesskey: '*',
         action: 'form',
         align: new Set([
-            'applet', 'caption', 'col', 'colgroup',  'hr', 'iframe', 'img', 'table', 'tbody',  'td',  'tfoot' , 'th',
+            'applet', 'caption', 'col', 'colgroup', 'hr', 'iframe', 'img', 'table', 'tbody', 'td', 'tfoot', 'th',
             'thead', 'tr'
         ]),
         alt: new Set(['applet', 'area', 'img', 'input']),
@@ -158,4 +140,25 @@ export const List = {
         novalidate: new Set(['form']),
         sortable: new Set(['table']),
     },
+    // List of inline elements, br is left out deliberately so it is treated as block
+    // level element. Spaces around br elements are redundant.
+    inline: new Set([
+        'a', 'abbr', 'b', 'bdo', 'button', 'cite', 'code', 'dfn', 'em', 'i', 'img', 'input', 'kbd',
+        'label', 'q', 's', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'textarea', 'var'
+    ]),
+    // Elements that have special content, e.g. JS or CSS.
+    node: new Set(['tag', 'script', 'style']),
+    // List of redundant attributes, e.g. boolean attributes that require no value.
+    redundant: new Set([
+        'autofocus', 'disabled', 'multiple', 'required', 'readonly', 'hidden', 'async', 'defer', 'formnovalidate',
+        'checked', 'scoped', 'reversed', 'selected', 'autoplay', 'controls', 'loop', 'muted', 'seamless', 'default',
+        'ismap', 'novalidate', 'open', 'typemustmatch', 'truespeed', 'itemscope', 'autocomplete', 'download',
+        'draggable', 'novalidate', 'sortable', 'spellcheck'
+    ]),
+    // List of singular elements, e.g. elements that have no closing tag.
+    singular: new Set([
+        'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'wbr'
+    ]),
+    // Elements that require and should keep structure to their content.
+    structural: new Set(['pre', 'textarea', 'code']),
 };

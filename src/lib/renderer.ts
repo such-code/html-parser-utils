@@ -1,17 +1,19 @@
-import {List} from './list';
-import {DataNode, Element, Node, NodeWithChildren} from 'domhandler/lib';
-import {ElementType} from 'htmlparser2/lib';
+import { HtmlNode } from './html-node';
+import { DataNode, Element, Node, NodeWithChildren } from 'domhandler/lib';
+import { ElementType } from 'htmlparser2/lib';
 
 export type DomRendererOptions = {
     // This could be extended someday,
 }
 
 /**
- * Helps render HTML AST.
+ * Helps rendering HTML AST.
  */
 export class DomRenderer {
     /**
      * Wraps the attribute in single or double quotes.
+     * @param $value
+     * @static
      */
     public static quote($value: string): string {
         if (!$value) {
@@ -28,7 +30,7 @@ export class DomRenderer {
 
     protected renderTag($element: Element): string {
         let render = this.openTag($element);
-        if (List.node.has($element.type) && !List.singular.has($element.name)) {
+        if (HtmlNode.node.has($element.type) && !HtmlNode.singular.has($element.name)) {
             if (Array.isArray($element.children)) {
                 render += this.renderNodes($element.children);
             }
@@ -38,8 +40,9 @@ export class DomRenderer {
     }
 
     /**
-     * Create starting tag for element, if required an additional white space will
-     * be added to retain flow of inline elements.
+     * Create starting tag for element, if required an additional white space will be added to retain flow of inline
+     * elements.
+     * @param $element
      */
     protected openTag($element: Element): string {
         const attributes = this.attributes($element);
@@ -49,8 +52,9 @@ export class DomRenderer {
     };
 
     /**
-     * Loop set of attributes belonging to an element. Surrounds attributes with
-     * quotes if required, omits if not.
+     * Loops through set of attributes belonging to an element. Surrounds attributes with quotes if required, omits if
+     * not.
+     * @param $element
      */
     protected attributes($element: Element): string {
         if (typeof $element.attribs === 'object' && $element.attribs !== null) {
@@ -70,21 +74,24 @@ export class DomRenderer {
     }
 
     /**
-     * Return simple text, no special treatment.
+     * Render simple text, no special treatment.
+     * @param $element
      */
     protected renderText($element: DataNode): string {
         return $element.data;
     };
 
     /**
-     * Returned simple comment.
+     * Render simple comment.
+     * @param $element
      */
     protected renderComment($element: DataNode): string {
         return `<!--${$element.data}-->`;
     };
 
     /**
-     * Return parsed directive.
+     * Render parsed directive.
+     * @param $element
      */
     protected renderDirective($element: DataNode): string {
         return `<${$element.data}>`;
@@ -92,6 +99,7 @@ export class DomRenderer {
 
     /**
      * Completely render one element including children.
+     * @param $node
      */
     public renderNode($node: Node): string {
         switch ($node.type) {
@@ -114,7 +122,8 @@ export class DomRenderer {
     }
 
     /**
-     * Renders array of elements
+     * Renders array of elements.
+     * @param $elements
      */
     public renderNodes($elements: Array<Node>): string {
         return $elements

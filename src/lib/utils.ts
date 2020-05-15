@@ -1,10 +1,60 @@
-import {DomHandler, Parser} from 'htmlparser2';
-import {ParserOptions} from 'htmlparser2/lib';
-import {DataNode, Element, Node, NodeWithChildren} from 'domhandler/lib';
-import {ProcessingInstruction} from 'domhandler/lib/node';
+import { DomHandler, Parser } from 'htmlparser2';
+import { ParserOptions } from 'htmlparser2/lib';
+import { DataNode, Element, Node, NodeWithChildren } from 'domhandler/lib';
+import { ProcessingInstruction } from 'domhandler/lib/node';
 
+/**
+ * Escapes special chars and converts string to RegExp matching that string.
+ * @param $string
+ * @returns RegExp
+ */
 export function stringToRegExp($string: string): RegExp {
     return new RegExp(`^${$string.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')}$`);
+}
+
+/**
+ * Type guard to check if $value is Node.
+ * @param $value
+ * @returns boolean
+ */
+export function isNode($value: any): $value is Node {
+    return typeof $value === 'object' && $value instanceof Node;
+}
+
+/**
+ * Type guard to check if $value is DataNode.
+ * @param $value
+ * @returns boolean
+ */
+export function isDataNode($value: any): $value is DataNode {
+    return typeof $value === 'object' && $value instanceof DataNode;
+}
+
+/**
+ * Type guard to check if $value is ProcessingInstruction.
+ * @param $value
+ * @returns boolean
+ */
+export function isProcessingInstruction($value: any): $value is ProcessingInstruction {
+    return typeof $value === 'object' && $value instanceof ProcessingInstruction;
+}
+
+/**
+ * Type guard to check if $value is NodeWithChildren.
+ * @param $value
+ * @returns boolean
+ */
+export function isNodeWithChildren($value: any): $value is NodeWithChildren {
+    return typeof $value === 'object' && $value instanceof NodeWithChildren;
+}
+
+/**
+ * Type guard to check if $value is Element.
+ * @param $value
+ * @returns boolean
+ */
+export function isElement($value: any): $value is Element {
+    return typeof $value === 'object' && $value instanceof Element;
 }
 
 const defaultParserOptions: ParserOptions = {
@@ -12,27 +62,14 @@ const defaultParserOptions: ParserOptions = {
     lowerCaseAttributeNames: false
 };
 
-export function isNode($value: any): $value is Node {
-    return typeof $value === 'object' && $value instanceof Node;
-}
-
-export function isDataNode($value: any): $value is DataNode {
-    return typeof $value === 'object' && $value instanceof DataNode;
-}
-
-export function isProcessingInstruction($value: any): $value is ProcessingInstruction {
-    return typeof $value === 'object' && $value instanceof ProcessingInstruction;
-}
-
-export function isNodeWithChildren($value: any): $value is NodeWithChildren {
-    return typeof $value === 'object' && $value instanceof NodeWithChildren;
-}
-
-export function isElement($value: any): $value is Element {
-    return typeof $value === 'object' && $value instanceof Element;
-}
-
-export function stringToDom($data: string, $options: ParserOptions = {}): Promise<Array<Node>> {
+/**
+ * Converts string to Array of Nodes using domhandler library.
+ * @param $data
+ * @param $options optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are set to
+ * false.
+ * @returns Promise<Array<Node>>
+ */
+export function stringToDom($data: string, $options?: ParserOptions): Promise<Array<Node>> {
     return new Promise<Array<Node>>(($resolve, $reject) => {
         const parser = new Parser(
             new DomHandler(($error: any, $dom: Array<Node>) => {

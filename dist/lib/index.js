@@ -1,13 +1,15 @@
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./list"));
-__export(require("./renderer"));
-__export(require("./utils"));
-// These export are required to exclude "domhandler" and "domelementtype" libraries from dependencies, when using TS.
-// Because NPM could add some libraries as a child dependencies, there is possibility that then won't be available as
-// direct require() and developer must add then as a dependencies for a project.
-__export(require("domhandler/lib/node"));
-//# sourceMappingURL=index.js.map
+__exportStar(require("./html-node"), exports);
+__exportStar(require("./renderer"), exports);
+__exportStar(require("./utils"), exports);
