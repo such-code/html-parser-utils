@@ -6,7 +6,7 @@ Generic utils to simplify work with [htmlparser2](https://github.com/fb55/htmlpa
 Contains definitions for html elements.
 
 #### DomRenderer
-```TypeScript
+```typescript
 import { Node } from 'htmlparser2';
 
 export declare type DomRendererOptions = {};

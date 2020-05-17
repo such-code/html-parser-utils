@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "src",
     "declaration": true,
     "declarationMap": true,
     "emitDecoratorMetadata": true,
@@ -14,7 +15,6 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "baseUrl": "src",
     "lib": [
       "es2017"
     ]

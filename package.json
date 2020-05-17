@@ -1,6 +1,6 @@
 {
   "name": "@such-code/html-parser-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Utils to help parsed DOM rendering and more.",
   "main": "dist/lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "npm run cleanup; tsc; ncp ./src/test/assets ./dist/test/assets;",
     "test": "npm run build; node dist/test/index.js;"
   },
-  "author": "Eriks Podrezs<erya14@gmail.com>",
+  "author": "Erik Podrez<erya14@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/such-code/html-parser-utils.git"
