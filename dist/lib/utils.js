@@ -65,11 +65,13 @@ const defaultParserOptions = {
 /**
  * Converts string to Array of Nodes using domhandler library.
  * @param $data
- * @param $options optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are set to
- * false.
+ * @param $parserOptions optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are
+ * set to false.
+ * @param $domHandlerOptions optional DomHandlerOptions. Override default values for DomHandler, could be used for html
+ * optimization.
  * @returns Promise<Array<Node>>
  */
-function stringToDom($data, $options) {
+function stringToDom($data, $parserOptions, $domHandlerOptions) {
     return new Promise(($resolve, $reject) => {
         const parser = new htmlparser2_1.Parser(new htmlparser2_1.DomHandler(($error, $dom) => {
             if ($error) {
@@ -78,8 +80,9 @@ function stringToDom($data, $options) {
             else {
                 $resolve($dom);
             }
-        }), Object.assign(Object.assign({}, defaultParserOptions), $options));
+        }, $domHandlerOptions), Object.assign(Object.assign({}, defaultParserOptions), $parserOptions));
         parser.parseComplete($data);
     });
 }
 exports.stringToDom = stringToDom;
+//# sourceMappingURL=utils.js.map

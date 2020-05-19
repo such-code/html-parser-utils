@@ -1,5 +1,5 @@
 import { ParserOptions } from 'htmlparser2/lib';
-import { DataNode, Element, Node, NodeWithChildren } from 'domhandler/lib';
+import { DataNode, DomHandlerOptions, Element, Node, NodeWithChildren } from 'domhandler/lib';
 import { ProcessingInstruction } from 'domhandler/lib/node';
 /**
  * Escapes special chars and converts string to RegExp matching that string.
@@ -40,9 +40,11 @@ export declare function isElement($value: any): $value is Element;
 /**
  * Converts string to Array of Nodes using domhandler library.
  * @param $data
- * @param $options optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are set to
- * false.
+ * @param $parserOptions optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are
+ * set to false.
+ * @param $domHandlerOptions optional DomHandlerOptions. Override default values for DomHandler, could be used for html
+ * optimization.
  * @returns Promise<Array<Node>>
  */
-export declare function stringToDom($data: string, $options?: ParserOptions): Promise<Array<Node>>;
+export declare function stringToDom($data: string, $parserOptions?: ParserOptions, $domHandlerOptions?: DomHandlerOptions): Promise<Array<Node>>;
 //# sourceMappingURL=utils.d.ts.map

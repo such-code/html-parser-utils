@@ -162,3 +162,4 @@ exports.HtmlNode = {
     // Elements that require and should keep structure to their content.
     structural: new Set(['pre', 'textarea', 'code']),
 };
+//# sourceMappingURL=html-node.js.map

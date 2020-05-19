@@ -1,6 +1,6 @@
 import { DomHandler, Parser } from 'htmlparser2';
 import { ParserOptions } from 'htmlparser2/lib';
-import { DataNode, Element, Node, NodeWithChildren } from 'domhandler/lib';
+import { DataNode, DomHandlerOptions, Element, Node, NodeWithChildren } from 'domhandler/lib';
 import { ProcessingInstruction } from 'domhandler/lib/node';
 
 /**
@@ -65,23 +65,32 @@ const defaultParserOptions: ParserOptions = {
 /**
  * Converts string to Array of Nodes using domhandler library.
  * @param $data
- * @param $options optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are set to
- * false.
+ * @param $parserOptions optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are
+ * set to false.
+ * @param $domHandlerOptions optional DomHandlerOptions. Override default values for DomHandler, could be used for html
+ * optimization.
  * @returns Promise<Array<Node>>
  */
-export function stringToDom($data: string, $options?: ParserOptions): Promise<Array<Node>> {
+export function stringToDom(
+    $data: string,
+    $parserOptions?: ParserOptions,
+    $domHandlerOptions?: DomHandlerOptions
+): Promise<Array<Node>> {
     return new Promise<Array<Node>>(($resolve, $reject) => {
         const parser = new Parser(
-            new DomHandler(($error: any, $dom: Array<Node>) => {
-                if ($error) {
-                    $reject($error);
-                } else {
-                    $resolve($dom);
-                }
-            }),
+            new DomHandler(
+                ($error: any, $dom: Array<Node>) => {
+                    if ($error) {
+                        $reject($error);
+                    } else {
+                        $resolve($dom);
+                    }
+                },
+                $domHandlerOptions
+            ),
             {
                 ...defaultParserOptions,
-                ...$options,
+                ...$parserOptions,
             }
         );
         parser.parseComplete($data);

@@ -1,5 +1,11 @@
 ### @such-code/html-parser-utils
 
+#### Installation
+
+```bash
+npm i -D @such-code/html-parser-utils
+```
+
 Generic utils to simplify work with [htmlparser2](https://github.com/fb55/htmlparser2) library.
 
 #### HtmlNode
@@ -42,7 +48,7 @@ export declare class DomRenderer {
 
 ```TypeScript
 import { ParserOptions } from 'htmlparser2/lib';
-import { DataNode, Element, Node, NodeWithChildren } from 'domhandler/lib';
+import { DataNode, DomHandlerOptions, Element, Node, NodeWithChildren } from 'domhandler/lib';
 import { ProcessingInstruction } from 'domhandler/lib/node';
 
 /**
@@ -90,9 +96,11 @@ export declare function isElement($value: any): $value is Element;
 /**
  * Converts string to Array of Nodes using domhandler library.
  * @param $data
- * @param $options optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are set to
- * false.
+ * @param $parserOptions optional ParserOptions. Default values for `lowerCaseTags` and `lowerCaseAttributeNames` are
+ * set to false.
+ * @param $domHandlerOptions optional DomHandlerOptions. Override default values for DomHandler, could be used for html
+ * optimization.
  * @returns Promise<Array<Node>>
  */
-export declare function stringToDom($data: string, $options?: ParserOptions): Promise<Array<Node>>;
+export declare function stringToDom($data: string, $parserOptions?: ParserOptions, $domHandlerOptions?: DomHandlerOptions): Promise<Array<Node>>;
 ```
