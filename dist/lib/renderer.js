@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DomRenderer = void 0;
 const html_node_1 = require("./html-node");
-const lib_1 = require("htmlparser2/lib");
+const htmlparser2_1 = require("htmlparser2");
 /**
  * Helps rendering HTML AST.
  */
@@ -95,19 +95,19 @@ class DomRenderer {
      */
     renderNode($node) {
         switch ($node.type) {
-            case lib_1.ElementType.CDATA:
+            case htmlparser2_1.ElementType.CDATA:
                 return this.renderCDATA($node);
-            case lib_1.ElementType.Comment:
+            case htmlparser2_1.ElementType.Comment:
                 return this.renderComment($node);
-            case lib_1.ElementType.Doctype:
+            case htmlparser2_1.ElementType.Doctype:
                 throw Error('WTF??');
-            case lib_1.ElementType.Directive:
+            case htmlparser2_1.ElementType.Directive:
                 return this.renderDirective($node);
-            case lib_1.ElementType.Script:
-            case lib_1.ElementType.Style:
-            case lib_1.ElementType.Tag:
+            case htmlparser2_1.ElementType.Script:
+            case htmlparser2_1.ElementType.Style:
+            case htmlparser2_1.ElementType.Tag:
                 return this.renderTag($node);
-            case lib_1.ElementType.Text:
+            case htmlparser2_1.ElementType.Text:
                 return this.renderText($node);
         }
         return undefined;

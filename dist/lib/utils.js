@@ -2,8 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stringToDom = exports.isElement = exports.isNodeWithChildren = exports.isProcessingInstruction = exports.isDataNode = exports.isNode = exports.stringToRegExp = void 0;
 const htmlparser2_1 = require("htmlparser2");
-const lib_1 = require("domhandler/lib");
-const node_1 = require("domhandler/lib/node");
+const domhandler_1 = require("domhandler");
 /**
  * Escapes special chars and converts string to RegExp matching that string.
  * @param $string
@@ -19,7 +18,7 @@ exports.stringToRegExp = stringToRegExp;
  * @returns boolean
  */
 function isNode($value) {
-    return typeof $value === 'object' && $value instanceof lib_1.Node;
+    return typeof $value === 'object' && $value instanceof domhandler_1.Node;
 }
 exports.isNode = isNode;
 /**
@@ -28,7 +27,7 @@ exports.isNode = isNode;
  * @returns boolean
  */
 function isDataNode($value) {
-    return typeof $value === 'object' && $value instanceof lib_1.DataNode;
+    return typeof $value === 'object' && $value instanceof domhandler_1.DataNode;
 }
 exports.isDataNode = isDataNode;
 /**
@@ -37,7 +36,7 @@ exports.isDataNode = isDataNode;
  * @returns boolean
  */
 function isProcessingInstruction($value) {
-    return typeof $value === 'object' && $value instanceof node_1.ProcessingInstruction;
+    return typeof $value === 'object' && $value instanceof domhandler_1.ProcessingInstruction;
 }
 exports.isProcessingInstruction = isProcessingInstruction;
 /**
@@ -46,7 +45,7 @@ exports.isProcessingInstruction = isProcessingInstruction;
  * @returns boolean
  */
 function isNodeWithChildren($value) {
-    return typeof $value === 'object' && $value instanceof lib_1.NodeWithChildren;
+    return typeof $value === 'object' && $value instanceof domhandler_1.NodeWithChildren;
 }
 exports.isNodeWithChildren = isNodeWithChildren;
 /**
@@ -55,7 +54,7 @@ exports.isNodeWithChildren = isNodeWithChildren;
  * @returns boolean
  */
 function isElement($value) {
-    return typeof $value === 'object' && $value instanceof lib_1.Element;
+    return typeof $value === 'object' && $value instanceof domhandler_1.Element;
 }
 exports.isElement = isElement;
 const defaultParserOptions = {

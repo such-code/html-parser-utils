@@ -1,6 +1,6 @@
 import { HtmlNode } from './html-node';
 import { DataNode, Element, Node, NodeWithChildren } from 'domhandler/lib';
-import { ElementType } from 'htmlparser2/lib';
+import {ElementType} from "htmlparser2";
 
 export type DomRendererOptions = {
     // This could be extended someday,

@@ -1,6 +1,5 @@
 import { ParserOptions } from 'htmlparser2/lib';
-import { DataNode, DomHandlerOptions, Element, Node, NodeWithChildren } from 'domhandler/lib';
-import { ProcessingInstruction } from 'domhandler/lib/node';
+import { DataNode, DomHandlerOptions, Element, Node, NodeWithChildren, ProcessingInstruction } from "domhandler";
 /**
  * Escapes special chars and converts string to RegExp matching that string.
  * @param $string

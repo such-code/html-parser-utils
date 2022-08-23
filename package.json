@@ -1,13 +1,12 @@
 {
   "name": "@such-code/html-parser-utils",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Utils to help parsed DOM rendering and more.",
   "main": "dist/lib/index.js",
   "scripts": {
     "cleanup": "del ./dist",
     "build": "npm run cleanup; tsc; ncp ./src/test/assets ./dist/test/assets;",
-    "test": "npm run build; node dist/test/index.js;",
-    "test:debug": "npm run build; node --inspect-brk dist/test/index.js;"
+    "test": "npm run build; node dist/test/index.js;"
   },
   "author": "Erik Podrez<erya14@gmail.com>",
   "repository": {
@@ -20,13 +19,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "domhandler": "^3.0.0",
-    "htmlparser2": "^4.1.0"
+    "domhandler": "^5.0.0",
+    "htmlparser2": "^8.0.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.39",
-    "del-cli": "^3.0.1",
+    "del-cli": "^5.0.0",
     "ncp": "^2.0.0",
-    "typescript": "^3.7.4"
+    "typescript": "^4.7.0"
   }
 }
